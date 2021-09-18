@@ -62,3 +62,13 @@ jobs:
     py_maj: 3
     py_min: 9
     conda_bld: '3.21.4'
+    
+- job: Work
+  steps:
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
+
+  # This malformed command causes the job to fail
+  # Only run this command if the succeed variable is set to false
+  - script: git clone malformed input
+    condition: eq(${{ parameters.succeed }}, false)
